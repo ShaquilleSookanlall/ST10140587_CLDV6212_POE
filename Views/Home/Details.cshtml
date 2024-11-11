@@ -4,16 +4,43 @@
     ViewData["Title"] = Model.ProductName;
 }
 
-<h1>@Model.ProductName</h1>
-<img src="@Model.ImageUrl" alt="Game Image" style="width: 100%; max-height: 400px; object-fit: cover;" />
-<p>@Model.ProductDescription</p>
-<p>Price: @Model.Price.ToString("C")</p>
-
-<form asp-action="AddToCart" asp-controller="Cart" method="post">
-    <input type="hidden" name="ProductId" value="@Model.ProductId" />
-    <div class="form-group">
-        <label for="quantity">Quantity</label>
-        <input type="number" name="Quantity" class="form-control" value="1" min="1" />
+<div class="container text-light">
+    <h1 class="text-center mb-4">@Model.ProductName</h1>
+    
+    <div class="text-center mb-4">
+        <img src="@Model.ImageUrl" alt="Game Image" style="width: 100%; max-height: 400px; object-fit: cover; border-radius: 8px;" />
     </div>
-    <button type="submit" class="btn btn-success">Add to Cart</button>
-</form>
+
+    <div class="mb-3">
+        <p class="lead">@Model.ProductDescription</p>
+        <p><strong>Price:</strong> @Model.Price.ToString("C")</p>
+    </div>
+
+    <form asp-action="AddToCart" asp-controller="Cart" method="post">
+        <input type="hidden" name="ProductId" value="@Model.ProductId" />
+        <div class="form-group mb-3">
+            <label for="quantity" class="form-label">Quantity</label>
+            <input type="number" name="Quantity" class="form-control bg-dark text-light border-secondary" value="1" min="1" />
+        </div>
+        <button type="submit" class="btn btn-success btn-lg">Add to Cart</button>
+    </form>
+</div>
+
+<style>
+    body {
+        background-color: #121212;
+        color: #ffffff;
+    }
+    h1 {
+        font-size: 2.5rem;
+        font-weight: bold;
+    }
+    .form-control {
+        color: #ffffff;
+        background-color: #2c2c2c;
+    }
+    .btn-success {
+        background-color: #28a745;
+        border-color: #28a745;
+    }
+</style>

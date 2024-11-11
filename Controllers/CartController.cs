@@ -6,6 +6,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 
 public class CartController : Controller
 {
@@ -77,6 +78,7 @@ public class CartController : Controller
 
     // POST: Cart/Checkout
     [HttpPost]
+    [Authorize] // Requires user to be authenticated to proceed with checkout
     public async Task<IActionResult> Checkout()
     {
         // Get the current user's ID and username
