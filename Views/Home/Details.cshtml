@@ -1,0 +1,19 @@
+﻿@model Product
+
+@{
+    ViewData["Title"] = Model.ProductName;
+}
+
+<h1>@Model.ProductName</h1>
+<img src="@Model.ImageUrl" alt="Game Image" style="width: 100%; max-height: 400px; object-fit: cover;" />
+<p>@Model.ProductDescription</p>
+<p>Price: @Model.Price.ToString("C")</p>
+
+<form asp-action="AddToCart" asp-controller="Cart" method="post">
+    <input type="hidden" name="ProductId" value="@Model.ProductId" />
+    <div class="form-group">
+        <label for="quantity">Quantity</label>
+        <input type="number" name="Quantity" class="form-control" value="1" min="1" />
+    </div>
+    <button type="submit" class="btn btn-success">Add to Cart</button>
+</form>

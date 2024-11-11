@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Order>
+
+<h1>Transaction History</h1>
+
+@foreach (var order in Model)
+{
+    <div class="card mb-3">
+        <div class="card-header">
+            <h5>Order Date: @order.OrderDate.ToString("g")</h5>
+            <p>Total Amount: @order.TotalAmount.ToString("C")</p>
+
+            <!-- Display the UserName only if the user is an Admin -->
+            @if (User.IsInRole("Admin"))
+            {
+                <p>Username: @order.UserName</p>
+            }
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in order.OrderItems)
+                    {
+                        <tr>
+                            <td>@item.ProductName</td>
+                            <td>@item.Price.ToString("C")</td>
+                            <td>@item.Quantity</td>
+                            <td>@item.TotalPrice.ToString("C")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
